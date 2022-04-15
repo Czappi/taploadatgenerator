@@ -89,6 +89,8 @@ class _EditorPageState extends State<EditorPage> {
       child = stage3();
     } else if (stage == 4) {
       child = stage4();
+    } else if (stage == 35) {
+      child = stage35();
     }
     return Scaffold(
       appBar: AppBar(
@@ -386,13 +388,24 @@ class _EditorPageState extends State<EditorPage> {
           ),
         ),*/
         SliverToBoxAdapter(
-          child: button("Következő", 4),
+          child: button("Következő", 2),
         ),
         const SliverToBoxAdapter(
           child: SizedBox(
             height: 50,
           ),
         )
+      ],
+    );
+  }
+
+  Widget stage35() {
+    return Row(
+      children: [
+        button("Előző", 2),
+        button("Következő", 3, extra: () {
+          viccescontroller.reloadWeb();
+        }),
       ],
     );
   }
@@ -433,11 +446,11 @@ class _EditorPageState extends State<EditorPage> {
             ],
           ),
         ),
-        //htmlEditor(simacontroller, simaJson),
+        htmlEditor(simacontroller, simaJson),
         Row(
           children: [
             button("Előző", 1),
-            button("Következő", 3, extra: () {
+            button("Következő", 35, extra: () {
               viccescontroller.reloadWeb();
             }),
           ],
@@ -482,10 +495,10 @@ class _EditorPageState extends State<EditorPage> {
             ],
           ),
         ),
-        //htmlEditor(viccescontroller, viccesJson),
+        htmlEditor(viccescontroller, viccesJson),
         Row(
           children: [
-            button("Előző", 2, extra: () {
+            button("Előző", 35, extra: () {
               simacontroller.reloadWeb();
             }),
             button("Következő", 4, extra: () {}),
@@ -519,7 +532,7 @@ class _EditorPageState extends State<EditorPage> {
           ),
         ),
         downloadbutton(viccesJson, simaJson),
-        button("Előző", 1, extra: () {
+        button("Előző", 3, extra: () {
           //viccescontroller.enable();
         }),
       ],
